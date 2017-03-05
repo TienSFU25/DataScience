@@ -1,5 +1,6 @@
 source("./helpers.R")
 
+# read data to memory
 if (is.null(householdData)) {
   householdData <- load_data_for_a1()
 }
