@@ -9,10 +9,10 @@ neis <- filter(NEI, SCC %in% uniqueSccs)
 byYear <- group_by(neis, year)
 summary <- summarise(byYear, TotalEmissions=sum(Emissions))
 
-g <- ggplot(summary, aes(year, TotalEmissions))
+g <- ggplot(summary, aes(factor(year), TotalEmissions))
 print(g +
-        geom_line() +
+        geom_bar(stat="identity") +
         coord_cartesian(ylim = c(0, max(summary$TotalEmissions))) + 
-        labs(y="Total coal combustion-related emissions (tons)"))
+        labs(x="Year", y="Total coal combustion-related emissions (tons)"))
 
 dev.off()

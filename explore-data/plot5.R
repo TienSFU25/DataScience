@@ -11,11 +11,11 @@ baltimoreByYear <- NEI %>%
 
 summary <- summarise(baltimoreByYear, TotalEmissions=sum(Emissions))
 
-g <- ggplot(summary, aes(year, TotalEmissions))
+g <- ggplot(summary, aes(as.factor(year), TotalEmissions))
 print(g +
-        geom_line() +
+        geom_bar(stat="identity") +
         coord_cartesian(ylim = c(0, max(summary$TotalEmissions))) +
-        labs(y="Total Emissions from motor vehicle sources in Baltimore City")
+        labs(x="Year", y="Total Emissions from motor vehicle sources in Baltimore City")
       )
 
 dev.off()

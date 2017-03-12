@@ -17,12 +17,12 @@ cityByYear <- cityByYear %>%
 
 summary <- summarise(cityByYear, TotalEmissions=sum(as.numeric(Emissions)))
 
-g <- ggplot(summary, aes(year, TotalEmissions))
+g <- ggplot(summary, aes(as.factor(year), TotalEmissions))
 print(g +
-        geom_line() +
+        geom_bar(stat="identity") +
         facet_grid(. ~ City) +
         coord_cartesian(ylim = c(0, max(summary$TotalEmissions))) +
-        labs(y="Emissions from Baltimore City vs LA (tons)")
+        labs(x = "Year", y="Emissions from Baltimore City vs LA (tons)")
       )
 
 dev.off()
